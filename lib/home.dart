@@ -1,7 +1,7 @@
-import 'dart:convert';
+//import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:second_app/models/post.dart';
+//import 'package:http/http.dart' as http;
+//import 'package:second_app/models/post.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,28 +11,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Post> postList = [];
+  // List<Post> postList = [];
 
-  Future<List<Post>> getPostApi() async {
-    final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
-    var data = jsonDecode(response.body.toString());
-    if (response.statusCode == 200) {
-      postList.clear();
-      for (Map<String, dynamic> i in data) { // Change this line 
-         postList.add(Post.fromJson(i)); // Fixed this line
-      }
-      return postList;
-    } else {
-      return postList;
-    }
-  }
+  // Future<List<Post>> getPostApi() async {
+  //   final response =
+  //       await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+  //   var data = jsonDecode(response.body.toString());
+  //   if (response.statusCode == 200) {
+  //     postList.clear();
+  //     for (Map<String, dynamic> i in data) { // Change this line 
+  //        postList.add(Post.fromJson(i)); // Fixed this line
+  //     }
+  //     return postList;
+  //   } else {
+  //     return postList;
+  //   }
+  // }
 
-  @override
-  void initState() {
-    super.initState();
-    getPostApi();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getPostApi();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -201,32 +201,32 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            Expanded(
-              child: FutureBuilder(
-                future: getPostApi(),
-                builder: (context, snapshot){
-                  if(!snapshot.hasData){
-                    return Text('Loading');
-                  }
-                  else{
-                    return ListView.builder(
-                      itemCount: postList.length,
-                      itemBuilder: (context, index){
-                        return Card(
-                          child: Column(
-                            children: [
-                              Text(postList[index].title.toString()),
-                              Text(postList[index].title.toString()),
-                            ],
-                          ),
-                        );
+            // Expanded(
+            //   child: FutureBuilder(
+            //     future: getPostApi(),
+            //     builder: (context, snapshot){
+            //       if(!snapshot.hasData){
+            //         return Text('Loading');
+            //       }
+            //       else{
+            //         return ListView.builder(
+            //           itemCount: postList.length,
+            //           itemBuilder: (context, index){
+            //             return Card(
+            //               child: Column(
+            //                 children: [
+            //                   Text(postList[index].title.toString()),
+            //                   Text(postList[index].title.toString()),
+            //                 ],
+            //               ),
+            //             );
 
-                      });
-                  }
-                }
+            //           });
+            //       }
+            //     }
                 
-              ),
-            ),
+            //   ),
+            // ),
           ],
         ),
       ),
