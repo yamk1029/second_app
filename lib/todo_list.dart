@@ -95,15 +95,26 @@ class _HomeState extends State<Home> {
                 }),
           ),
         ),
-        child: const Center(child: CircularProgressIndicator(color: Colors.black,),),
+        child: const Center(child: CircularProgressIndicator(color: Colors.white,),),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: navigateToAddPage,
-        label: const Text(
-          'Add Todo',
-          style: TextStyle(
-            color: Colors.black,
-          ),
+        shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(50),
+  ),
+        label: Row(
+          children: [
+            const Text(
+              'Add ', 
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+             Icon(
+        Icons.add,
+        color: Colors.black,
+      ),
+          ],
         ),
         backgroundColor: const Color.fromARGB(255, 199, 175, 90),
         elevation: 1,
@@ -116,10 +127,7 @@ class _HomeState extends State<Home> {
       builder: (context) => AddPage(todo: item),
     );
    await Navigator.push(context, route);
-    setState(() {
-      isLoading = true;
-    });
-    fetchTodo();
+   fetchTodo();
   }
 
   Future<void> navigateToAddPage()async {
@@ -127,10 +135,7 @@ class _HomeState extends State<Home> {
       builder: (context) => const AddPage(),
     );
     await Navigator.push(context, route);
-    setState(() {
-      isLoading = true;
-    });
-    fetchTodo();
+    await fetchTodo();
 
   }
 
